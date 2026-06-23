@@ -1,5 +1,6 @@
+import sys
 from itertools import combinations
-from PyQt5.QtWidgets import QApplication
+from PyQt5.QtWidgets import QApplication, QMainWindow
 
 def getPossibleLetterCombinations():
     alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
@@ -21,8 +22,18 @@ def getPossibleLetterCombinations():
     print("Possible letter combinations not in hidden are:", notPresentCombinations)
 
 
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Word Generator")
+        self.setGeometry(100, 100, 800, 600)
+        # Additional UI setup can be done here
 
 def main():
+    app = QApplication(sys.argv)
+    window = MainWindow()
+    window.show()
+    sys.exit(app.exec_())
     minLetterMatches = 15
     minCompletedWords = 2
     maxCompletedWords = 12
@@ -30,3 +41,6 @@ def main():
     getPossibleLetterCombinations()
 
     wordBank = ["fair","aqua","resembles","young","amid","economic","cage","need","carriage","mug","eagle","empire","realism","poem","edit","arise","ebb","ink","inn","absent"]
+
+if __name__ == "__main__":
+    main()
